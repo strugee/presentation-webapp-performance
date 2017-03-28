@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>Webapp performance</title>
+		<link rel="stylesheet" type="text/css" href="build/build.css">
+	</head>
+	<body>
+		<article class="deck">
+			<section>
+				<h1>Webapp performance</h1>
+			</section>
+			<section>
+				<h2>Hi</h2>
+				<h3>I'm AJ</h3>
+				<h3>Other hats: security, decentralization</h3>
+				<h3>Today: how to make your web pages load/run fast</h3>
+			</section>
+			<section>
+				<h2>Why?</h2>
+				<h3>Be good to your users</h3>
+				<h3>// TODO stat</h3>
+			</section>
+			<section>
+				<h2>Wtf does "loading a page" even mean?</h2>
+				<h3>DNS query</h3>
+				<h3>TCP handshake</h3>
+				<h3>Possible TLS handshake</h3>
+				<h3>HTTP GET</h3>
+				<h3>HTML to DOM tree parsing</h3>
+				<h3>Incremental parsing</h3>
+				<h3>Resource fetches triggered by HTML elements</h3>
+			</section>
+			<section>
+				<h2>Focus: high-level stuff</h2>
+				<h3>Ignoring TCP optimizations</h3>
+				<h3>Ignoring TLS optimizations</h3>
+				<h3>Basically, stuff in the HTML, mostly</h3>
+			</section>
+			<section>
+				<h2>Things that take time</h2>
+				<h3>Network round-trips (request-response cycles)</h3>
+				<h3>Downloading data</h3>
+				<h3>Latency (physical distance)</h3>
+				<h3>Parsing (less important)</h3>
+			</section>
+			<section>
+				<h2>Minification</h2>
+				<h3>Makes your JS smaller</h3>
+				<h3>Removes whitespace, comments</h3>
+				<h3>Renames variables (e.g. <code>var a=document.getElementById;a('foo');</code></h3>
+				<h3>File concatenation</h3>
+				<h3>Eliminates dead code</h3>
+			</section>
+			<section>
+				<h2>Image formats</h2>
+				<h3>JPEG is pretty good</h3>
+				<h3>PNGs are huge</h3>
+				<h3>GIFs are even worse</h3>
+				<h3>No transparency, no animation? -> JPEGs</h3>
+			</section>
+			<section>
+				<h2>Compression</h2>
+				<h3>Compress your images</h3>
+				<h3>Turn down the quality</h3>
+				<h3>Turn on HTTP gzip compression</h3>
+			</section>
+			<section>
+				<h2>HTTP <code>Keep-Alive</code></h2>
+				<h3>Keeps TCP connections alive after response termination</h3>
+				<h3>Connection can be reused</h3>
+				<h3>Eliminates a network round-trip</h3>
+			</section>
+			<section>
+				<h2>Caching</h2>
+				<h3>Browser keeps local copies of stuff</h3>
+				<h3>Cache things aggressively</h3>
+				<h3>Eliminates request-response cycles</h3>
+			</section>
+			<section>
+				<h2>Cache-busting</h2>
+				<h3>Put unique key in CSS/JS filename</h3>
+				<h3>Key tied to file version (content hash, build date)</h3>
+				<h3>Key changes whenever file changes</h3>
+				<h3>Allows for long (1+ years) cache durations</h3>
+			</section>
+			<section>
+				<h2>Ordering</h2>
+				<h3>Put CSS as early as possible</h3>
+				<h3>Put JS at the end of <code>&lt;body></code></h3>
+				<h3><code>&lt;script></code> without <code>async</code>/<code>defer</code> blocks page parsing</h3>
+			</section>
+			<section>
+				<h2>Render server-side</h2>
+				<h3>"Booting" client-side is <em>terrible</em> for performance</h3>
+				<h3><em>Entire extra</em> request-response cycle before even <em>first paint</em></h3>
+				<h3>No incremental parsing/downloads</h3>
+				<h3>Browsers are better than you at parsing HTML</h3>
+			</section>
+			<section>
+				<h2>Terrible:</h2>
+				<pre><code class="language-html">&lt;!DOCTYPE html>
+&lt;html>
+	&lt;body>
+		&lt;script href="app.js">&lt;/script>
+	&lt;/body>
+&lt;/html>
+</code></pre>
+			</section>
+			<section>
+				<h2>CDNs</h2>
+				<h3>Physically close to most places</h3>
+				<h3>Good for static assets</h3>
+				<h3>Public CDNs (e.g. Google's CDN with jQuery and stuff) improve cacheability if you use exact version numbers</h3>
+				<h3>(But they leak history & are attack surface without Subresource Integrity)</h3>
+			</section>
+			<section>
+				<h2>More resources</h2>
+				<h3><a href="https://www.webpagetest.org/">webpagetest.org</a></h3>
+				<h3><a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a></h3>
+				<h3><a href="http://https://developers.google.com/speed/pagespeed/module/"><code>mod_pagespeed</code></a></h3>
+			</section>
+			<section>
+				<h2>Thanks!</h2>
+				<h3>Questions?</h3>
+			</section>
+			<section>
+				<h2>Access this presentation again</h2>
+				<h3><a href="https://strugee.net/presentation-webapp-performance/">https://strugee.net/presentation-webapp-performance/</a></h3>
+				<p><img src="images/qr.png" alt="QR code to presentation URL" width="200" height="200"></p>
+				<h4>Or, <a href="https://github.com/strugee/presentation-webapp-performance">check out the source</a>.</h4>
+			</section>
+		</article>
+		<script src="build/build.js"></script>
+	</body>
+</html>
